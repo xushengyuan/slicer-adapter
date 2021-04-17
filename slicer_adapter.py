@@ -136,32 +136,32 @@ if __name__ == "__main__":
             expose_time=int(float(gcode_filtered[i+1][4:-2]))
 
             im=Image.open(os.path.join(process_dir,image_filename+'.png'))
-            im=im.convert('L')
-            im=im.resize((1920,1200),Image.BOX)
+            im=im.convert('1')
+            # im=im.resize((1920,1200),Image.BOX)
 
-            im2=im.point(table4,'1')
-            im2.save(os.path.join(process_dir,'vds_'+image_filename+'#0.png'))#,dpi=(119,119),bits=8)
-            buildlist_str='<file = "vds_%s#0.bmp" expose_time = %d add = 0>'%(image_filename,expose_time/4)
+            # im2=im.point(table4,'1')
+            im.save(os.path.join(process_dir,'vds_'+image_filename+'#0.bmp'))#,dpi=(119,119),bits=8)
+            buildlist_str='<file = "vds_%s#0.bmp" expose_time = %d add = 0>'%(image_filename,expose_time//2)
             # print(buildlist_str)
             buildlist+=buildlist_str+'\n'
 
-            im3=im.point(table3,'1')
-            im3.save(os.path.join(process_dir,'vds_'+image_filename+'#1.png'))#,dpi=(119,119),bits=8)
-            buildlist_str='<file = "vds_%s#1.bmp" expose_time = %d add = 1>'%(image_filename,expose_time/4)
+            # im3=im.point(table3,'1')
+            im.save(os.path.join(process_dir,'vds_'+image_filename+'#1.bmp'))#,dpi=(119,119),bits=8)
+            buildlist_str='<file = "vds_%s#1.bmp" expose_time = %d add = 1>'%(image_filename,expose_time//2)
             # print(buildlist_str)
             buildlist+=buildlist_str+'\n'
 
-            im3=im.point(table2,'1')
-            im3.save(os.path.join(process_dir,'vds_'+image_filename+'#2.png'))#,dpi=(119,119),bits=8)
-            buildlist_str='<file = "vds_%s#2.bmp" expose_time = %d add = 1>'%(image_filename,expose_time/4)
-            # print(buildlist_str)
-            buildlist+=buildlist_str+'\n'
+            # im3=im.point(table2,'1')
+            # im3.save(os.path.join(process_dir,'vds_'+image_filename+'#2.bmp'))#,dpi=(119,119),bits=8)
+            # buildlist_str='<file = "vds_%s#2.bmp" expose_time = %d add = 1>'%(image_filename,expose_time//4)
+            # # print(buildlist_str)
+            # buildlist+=buildlist_str+'\n'
 
-            im3=im.point(table1,'1')
-            im3.save(os.path.join(process_dir,'vds_'+image_filename+'#3.png'))#,dpi=(119,119),bits=8)
-            buildlist_str='<file = "vds_%s#3.bmp" expose_time = %d add = 1>'%(image_filename,expose_time/4)
-            # print(buildlist_str)
-            buildlist+=buildlist_str+'\n'
+            # im3=im.point(table1,'1')
+            # im3.save(os.path.join(process_dir,'vds_'+image_filename+'#3.bmp'))#,dpi=(119,119),bits=8)
+            # buildlist_str='<file = "vds_%s#3.bmp" expose_time = %d add = 1>'%(image_filename,expose_time//4)
+            # # print(buildlist_str)
+            # buildlist+=buildlist_str+'\n'
 
         jobinfo_out=open(os.path.join(process_dir,'Jobinfo.txt'),'w')
         jobinfo_out.write(jobinfo_tmpl)
